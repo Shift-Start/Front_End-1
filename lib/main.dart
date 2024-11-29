@@ -1,24 +1,13 @@
-import 'package:ShiftStart/LogIn/signUp.dart';
-import 'package:ShiftStart/LogIn/successfully.dart';
+
+
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import 'BottomNavBar/bottomNavBar.dart';
-import 'Habits/habitTemplete.dart';
-import 'HomeScreen/Assignments.dart';
-import 'HomeScreen/HomeScreen.dart';
-import 'HomeScreen/calander.dart';
-import 'HomeScreen/menuScreen.dart';
-import 'HomeScreen/newAssignment.dart';
-import 'HomeScreen/schedule.dart';
-import 'LogIn/check your email.dart';
-import 'LogIn/forgetPassword.dart';
-import 'LogIn/login.dart';
-import 'Profile/profile.dart';
-import 'Profile/setting.dart';
+
+
 import 'SplashScreen/splashScreen.dart';
-import 'Templets/templet.dart';
+
 import 'colors.dart';
 
 
