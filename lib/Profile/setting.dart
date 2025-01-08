@@ -27,23 +27,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             icon: Icon(Icons.arrow_back)),
         title: Text(
           "Settings",
-       
-             // theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+      
         ),
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(
-        //       Icons.menu,
-        //       size: 29,
-        //       color: theme.textTheme.bodyLarge?.color,
-        //     ),
-        //     onPressed: () {
-        //       // يمكن هنا إضافة أكشن عند الضغط على الأيقونة
-        //     },
-        //   ),
-        // ],
+     
+     
       ),
-      body: ListView(
+      body: 
+      ListView(
         padding: EdgeInsets.all(16.0),
         children: [
           // Personal Settings

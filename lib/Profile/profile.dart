@@ -100,7 +100,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "Ibrahim Sa",
+                  "Yara Diab",
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -135,11 +135,11 @@ class _ProfileState extends State<Profile> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          buildTextField("Fullname", "Ibrahim Sa", nameController),
+          buildTextField("Fullname", "yara diab", nameController),
           const SizedBox(height: 16),
           buildTextField(
             "Date of birth",
-            "13/10/2002",
+            "10/10/2002",
             null,
             isReadOnly: true,
             suffixIcon: Icons.calendar_today,
@@ -179,9 +179,9 @@ class _ProfileState extends State<Profile> {
             ],
           ),
           const SizedBox(height: 16),
-          buildTextField("Email address", "ibrahmsa28@gmail.com", emailController),
+          buildTextField("Email address", "yaradi2002@gmail.com", emailController),
           const SizedBox(height: 16),
-          buildTextField("Phone number", "994 109 259", phoneController, prefixText: "+963"),
+          buildTextField("Phone number", "953469630", phoneController, prefixText: "+963"),
           const SizedBox(height: 16),
           buildTextField("Location", "Damascus, Syria", locationController),
           const SizedBox(height: 20),

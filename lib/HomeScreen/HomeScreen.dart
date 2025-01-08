@@ -95,7 +95,7 @@ class _HomescreenState extends State<Homescreen> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "Ibrahim Sa",
+                  "Yara di",
                   style: textTheme.titleMedium
                       ?.copyWith(color: colorScheme.onPrimary),
                 ),

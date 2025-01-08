@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../LogIn/login.dart';
 import '../colors.dart';
-// تعديل مسار UiProvider حسب مكان الملف
+
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});

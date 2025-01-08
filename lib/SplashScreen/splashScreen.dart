@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../onBoarder/onboarding.dart';
 
@@ -47,12 +48,10 @@ class _SplashscreenState extends State<Splashscreen> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
-                          'images/Logo.png')), //shape: BoxShape.circle
+                          'images/logo (1).png')), //shape: BoxShape.circle
                 ),
               ),
-              SizedBox(
-                height: 0,
-              ),
+            
               Text(
                 'ShiftStart',
                 style: TextStyle(
