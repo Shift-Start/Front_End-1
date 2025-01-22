@@ -3,6 +3,7 @@ import '../HomeScreen/Assignments.dart';
 import '../HomeScreen/HomeScreen.dart';
 import '../HomeScreen/calander.dart';
 import '../HomeScreen/schedule.dart';
+import '../Team/noTeamScreen.dart';
 
 class Bottomnavbar extends StatefulWidget {
   final String selectedModel;
@@ -19,7 +20,7 @@ class _BottomnavbarState extends State<Bottomnavbar> {
     SchedulePage(),
     Homescreen(),
     AssignmentsPage(),
-    Scaffold()
+    NoTeamScreen()
   ];
 
   @override

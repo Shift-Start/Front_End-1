@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Profile/profile.dart';
 import '../colors.dart';
- // تأكد من أنك قمت باستيراد UiProvider
+ 
 
 class SchedulePage extends StatefulWidget {
   @override
@@ -15,9 +15,9 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    // الحصول على الـ theme الحالي (مظلم أو فاتح)
+
     final isDark = Provider.of<UiProvider>(context).isDark;
-    final theme = isDark ? ThemeData.dark() : ThemeData.light();  // تحديد الـ theme بناءً على الوضع الحالي
+    final theme = isDark ? ThemeData.dark() : ThemeData.light();  
 
     return Scaffold(
       appBar: AppBar(titleTextStyle:

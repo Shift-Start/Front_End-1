@@ -18,21 +18,21 @@ class AddHabitsPage extends StatelessWidget {
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: 'DMSans_18pt-Bold'),
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HabitsTemplateScreen()));
-            },
-            icon: Icon(Icons.arrow_back)),
-        title: Text(
-          'Add Habits',
-          style: theme.textTheme.bodyLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: theme.primaryColor,
-        iconTheme: theme.iconTheme,
+        // automaticallyImplyLeading: false,
+        // leading: IconButton(
+        //     onPressed: () {
+        //       Navigator.of(context).push(MaterialPageRoute(
+        //           builder: (context) => HabitsTemplateScreen()));
+        //     },
+        //     icon: Icon(Icons.arrow_back)),
+        //   title: Text(
+        //     'Add Habits',
+        //     style: theme.textTheme.bodyLarge?.copyWith(
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        //   backgroundColor: theme.primaryColor,
+        //   iconTheme: theme.iconTheme,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

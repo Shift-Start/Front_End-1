@@ -42,8 +42,7 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
             fontFamily: 'DMSans_18pt-Bold'),
         title: Text(
           'Assignments',
-          //  style: theme.textTheme.bodyLarge?.copyWith(
-          //fontWeight: FontWeight.bold,
+      
         ),
         actions: [
           GestureDetector(
