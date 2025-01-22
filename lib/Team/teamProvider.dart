@@ -34,12 +34,12 @@ class Member {
 }
 
 class TeamProvider extends ChangeNotifier {
-  List<Team> _teams = []; // قائمة الفرق
+  List<Team> _teams = []; 
   List<Team> get teams => _teams;
-  // إضافة فريق جديد إلى القائمة
+  
   void addTeam(Team team) {
     _teams.add(team);
-    notifyListeners(); // إعلام الواجهات بالتحديث
+    notifyListeners(); 
   }
 
   void removeTeam(int index) {

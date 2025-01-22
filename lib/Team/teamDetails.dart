@@ -33,7 +33,7 @@ class TeamDetailsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 16, color: AppColors.lightSecondaryText)),
             SizedBox(height: 20),
 
-            // زر إدارة الأعضاء
+       
             ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(
@@ -77,7 +77,7 @@ class TeamDetailsScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
 
-            // عرض الأعضاء الحاليين
+            
             Text("Team Members",
                 style: TextStyle(fontSize: 18, color: AppColors.lightPrimaryText)),
             Expanded(

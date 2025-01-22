@@ -5,8 +5,7 @@ import '../colors.dart';
 import 'teamProvider.dart';
 
 class AddMemberScreen extends StatefulWidget {
-  final int teamIndex; // لتحديد الفريق الذي نضيف فيه العضو
-
+  final int teamIndex;
   AddMemberScreen({required this.teamIndex});
 
   @override

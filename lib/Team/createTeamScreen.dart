@@ -16,7 +16,7 @@ class CreateTeamScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Create Team"),
         centerTitle: true,
-        backgroundColor: AppColors.lightButton, // اللون المخصص
+        backgroundColor: AppColors.lightButton, 
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -55,7 +55,7 @@ class CreateTeamScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            TeamsListScreen()), // الانتقال إلى "قائمة الفرق"
+                            TeamsListScreen()),   
                   );
                 }
               },

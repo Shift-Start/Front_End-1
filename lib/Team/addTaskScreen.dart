@@ -90,7 +90,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                   taskNameController.clear();
                   taskDescriptionController.clear();
                   setState(() {
-                    selectedMember = null; // Reset assignment
+                    selectedMember = null; 
                   });
                 }
               },
