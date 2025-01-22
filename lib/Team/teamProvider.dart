@@ -20,11 +20,13 @@ class Task {
   String? assignedTo;
   String description;
   String status;
+  DateTime? startTime;
+  DateTime? endTime;
   Task(
       {required this.title,
       this.assignedTo,
       required this.description,
-      this.status = 'Unassigned'});
+      this.status = 'Unassigned',required this.endTime,required this.startTime});
 }
 
 class Member {
@@ -34,12 +36,12 @@ class Member {
 }
 
 class TeamProvider extends ChangeNotifier {
-  List<Team> _teams = []; 
+  List<Team> _teams = [];
   List<Team> get teams => _teams;
-  
+
   void addTeam(Team team) {
     _teams.add(team);
-    notifyListeners(); 
+    notifyListeners();
   }
 
   void removeTeam(int index) {
@@ -62,6 +64,7 @@ class TeamProvider extends ChangeNotifier {
     _teams[teamIndex].members.removeAt(memberIndex);
     notifyListeners();
   }
+
   void updateMember(int teamIndex, int memberIndex) {
     _teams[teamIndex].members[memberIndex];
     notifyListeners();

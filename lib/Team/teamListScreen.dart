@@ -19,8 +19,18 @@ class TeamsListScreen extends StatelessWidget {
         builder: (context, teamProvider, child) {
           return teamProvider.teams.isEmpty
               ? Center(
-                  child: Text("No teams yet!",
-                      style: TextStyle(fontSize: 16, color: Colors.grey)))
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.groups,
+                            size: 120, color: Theme.of(context).primaryColor),
+                        SizedBox(height: 20),
+                        Text(
+                          "No Teams Yet!",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ]),
+                )
               : ListView.builder(
                   itemCount: teamProvider.teams.length,
                   itemBuilder: (context, index) {

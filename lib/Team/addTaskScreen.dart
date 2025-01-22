@@ -1,8 +1,7 @@
-import 'package:ShiftStart/Team/teamProvider.dart';
-import 'package:ShiftStart/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:ShiftStart/colors.dart';
+import 'package:ShiftStart/Team/teamProvider.dart';
 
 class AddTasksScreen extends StatefulWidget {
   final int teamIndex;
@@ -17,6 +16,8 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
   final TextEditingController taskNameController = TextEditingController();
   final TextEditingController taskDescriptionController =
       TextEditingController();
+  DateTime? startTime;
+  DateTime? endTime;
   String? selectedMember;
 
   @override
@@ -75,22 +76,74 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
               },
             ),
             SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.lightButton,
+                    ),
+                    onPressed: () async {
+                      DateTime? picked = await _pickDateTime(context);
+                      if (picked != null) {
+                        setState(() {
+                          startTime = picked;
+                        });
+                      }
+                    },
+                    child: Text(
+                        startTime != null
+                            ? "Start: ${startTime.toString().substring(0, 16)}"
+                            : "Pick Start Time",
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.lightButton,
+                    ),
+                    onPressed: () async {
+                      DateTime? picked = await _pickDateTime(context);
+                      if (picked != null) {
+                        setState(() {
+                          endTime = picked;
+                        });
+                      }
+                    },
+                    child: Text(
+                        endTime != null
+                            ? "End: ${endTime.toString().substring(0, 16)}"
+                            : "Pick End Time",
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 if (taskNameController.text.isNotEmpty &&
-                    taskDescriptionController.text.isNotEmpty) {
+                    taskDescriptionController.text.isNotEmpty &&
+                    startTime != null &&
+                    endTime != null) {
                   teamProvider.addTask(
                     widget.teamIndex,
                     Task(
                       title: taskNameController.text,
                       description: taskDescriptionController.text,
                       assignedTo: selectedMember,
+                      startTime: startTime,
+                      endTime: endTime,
                     ),
                   );
                   taskNameController.clear();
                   taskDescriptionController.clear();
                   setState(() {
-                    selectedMember = null; 
+                    selectedMember = null;
+                    startTime = null;
+                    endTime = null;
                   });
                 }
               },
@@ -116,7 +169,10 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                   return ListTile(
                     title: Text(task.title),
                     subtitle: Text(
-                        "Assigned to: ${task.assignedTo ?? 'Unassigned'}\n${task.description}"),
+                        "Start: ${task.startTime?.toString().substring(0, 16) ?? 'N/A'}\n"
+                        "End: ${task.endTime?.toString().substring(0, 16) ?? 'N/A'}\n"
+                        "Assigned to: ${task.assignedTo ?? 'Unassigned'}\n"
+                        "${task.description}"),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -144,12 +200,39 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
     );
   }
 
+  Future<DateTime?> _pickDateTime(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (pickedDate != null) {
+      TimeOfDay? pickedTime = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+      );
+      if (pickedTime != null) {
+        return DateTime(
+          pickedDate.year,
+          pickedDate.month,
+          pickedDate.day,
+          pickedTime.hour,
+          pickedTime.minute,
+        );
+      }
+    }
+    return null;
+  }
+
   void _showEditTaskDialog(BuildContext context, int index, Task task) {
     final TextEditingController editTaskNameController =
         TextEditingController(text: task.title);
     final TextEditingController editTaskDescriptionController =
         TextEditingController(text: task.description);
     String? editAssignedMember = task.assignedTo;
+    DateTime? editStartTime = task.startTime;
+    DateTime? editEndTime = task.endTime;
 
     showDialog(
       context: context,
@@ -197,6 +280,50 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                   });
                 },
               ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.lightButton),
+                      onPressed: () async {
+                        DateTime? picked = await _pickDateTime(context);
+                        if (picked != null) {
+                          setState(() {
+                            editStartTime = picked;
+                          });
+                        }
+                      },
+                      child: Text(
+                          editStartTime != null
+                              ? "Start: ${editStartTime.toString().substring(0, 16)}"
+                              : "Pick Start Time",
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.lightButton),
+                      onPressed: () async {
+                        DateTime? picked = await _pickDateTime(context);
+                        if (picked != null) {
+                          setState(() {
+                            editEndTime = picked;
+                          });
+                        }
+                      },
+                      child: Text(
+                          editEndTime != null
+                              ? "End: ${editEndTime.toString().substring(0, 16)}"
+                              : "Pick End Time",
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           actions: [
@@ -207,15 +334,18 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
             ElevatedButton(
               onPressed: () {
                 if (editTaskNameController.text.isNotEmpty &&
-                    editTaskDescriptionController.text.isNotEmpty) {
-                  Provider.of<TeamProvider>(context, listen: false)
-                      .updateTask(
+                    editTaskDescriptionController.text.isNotEmpty &&
+                    editStartTime != null &&
+                    editEndTime != null) {
+                  Provider.of<TeamProvider>(context, listen: false).updateTask(
                     widget.teamIndex,
                     index,
                     Task(
                       title: editTaskNameController.text,
                       description: editTaskDescriptionController.text,
                       assignedTo: editAssignedMember,
+                      startTime: editStartTime,
+                      endTime: editEndTime,
                     ),
                   );
                   Navigator.pop(context);
@@ -228,7 +358,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
             ),
           ],
         );
-     },
-);
-}
+      },
+    );
+  }
 }
