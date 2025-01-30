@@ -1,3 +1,4 @@
+import 'package:ShiftStart/Conversation/teamChatsScreen.dart';
 import 'package:ShiftStart/Team/createTeamScreen.dart';
 import 'package:ShiftStart/Team/editTeamScreen.dart';
 import 'package:ShiftStart/Team/teamDetails.dart';
@@ -9,6 +10,7 @@ import 'package:provider/provider.dart';
 class TeamsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final teamProvider = Provider.of<TeamProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Teams"),
@@ -35,12 +37,22 @@ class TeamsListScreen extends StatelessWidget {
                   itemCount: teamProvider.teams.length,
                   itemBuilder: (context, index) {
                     final team = teamProvider.teams[index];
-                    return ListTile(
+                    return Card(
+                        child: ListTile(
                       title: Text(team.name),
                       subtitle: Text(team.scope),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => TeamChatsScreen(
+                                            teamId: team.name)));
+                              },
+                              icon: Icon(Icons.chat)),
                           IconButton(
                             icon: Icon(Icons.edit, color: Colors.blue),
                             onPressed: () {
@@ -73,7 +85,7 @@ class TeamsListScreen extends StatelessWidget {
                           ),
                         );
                       },
-                    );
+                    ));
                   },
                 );
         },

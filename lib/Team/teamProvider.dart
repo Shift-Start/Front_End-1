@@ -6,13 +6,15 @@ class Team {
   String description;
   List<Member> members;
   List<Task> tasks;
+  List<String> chatIds;
 
   Team(
       {required this.name,
       required this.scope,
       required this.description,
       required this.members,
-      required this.tasks});
+      required this.tasks,
+      required this.chatIds});
 }
 
 class Task {
@@ -26,7 +28,9 @@ class Task {
       {required this.title,
       this.assignedTo,
       required this.description,
-      this.status = 'Unassigned',required this.endTime,required this.startTime});
+      this.status = 'Unassigned',
+      required this.endTime,
+      required this.startTime});
 }
 
 class Member {
@@ -41,6 +45,11 @@ class TeamProvider extends ChangeNotifier {
 
   void addTeam(Team team) {
     _teams.add(team);
+    notifyListeners();
+  }
+
+  void addChatToTeam(int teamIndex, String chatId) {
+    _teams[teamIndex].chatIds.add(chatId);
     notifyListeners();
   }
 
@@ -88,6 +97,11 @@ class TeamProvider extends ChangeNotifier {
 
   void updateTask(int teamIndex, int taskIndex, Task updatedTask) {
     _teams[teamIndex].tasks[taskIndex] = updatedTask;
+    notifyListeners();
+  }
+
+  void addChat(int teamIndex, String chatId) {
+    _teams[teamIndex].chatIds.add(chatId);
     notifyListeners();
   }
 

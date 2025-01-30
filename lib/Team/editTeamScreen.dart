@@ -76,6 +76,7 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
                       description: descriptionController.text,
                       members: widget.team.members,
                       tasks: widget.team.tasks,
+                      chatIds: widget.team.chatIds,
                     ),
                   );
                   Navigator.pop(context); 

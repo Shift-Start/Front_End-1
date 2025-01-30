@@ -48,6 +48,7 @@ class CreateTeamScreen extends StatelessWidget {
                     description: teamDescriptionController.text,
                     members: [],
                     tasks: [],
+                    chatIds: [],
                   );
                   Provider.of<TeamProvider>(context, listen: false)
                       .addTeam(newTeam);

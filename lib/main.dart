@@ -1,4 +1,4 @@
-import 'package:ShiftStart/Team/noTeamScreen.dart';
+import 'package:ShiftStart/Conversation/teamChatsScreen.dart';
 import 'package:ShiftStart/Team/teamListScreen.dart';
 import 'package:ShiftStart/Team/teamProvider.dart';
 import 'package:flutter/material.dart';
@@ -6,17 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
+import 'Conversation/chatProvider.dart';
 import 'SplashScreen/splashScreen.dart';
 
 import 'colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => TeamProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TeamProvider()),
+        ChangeNotifierProvider(create: (_) => ChatProvider())
+      ],
       child: MyApp(),
     ),
   );
