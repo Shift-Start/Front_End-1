@@ -74,6 +74,7 @@ class TeamsListScreen extends StatelessWidget {
                                   .removeTeam(index);
                             },
                           ),
+                          
                         ],
                       ),
                       onTap: () {
@@ -82,6 +83,7 @@ class TeamsListScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) =>
                                 TeamDetailsScreen(teamIndex: 0),
+                                
                           ),
                         );
                       },
