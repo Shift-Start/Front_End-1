@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'BottomNavBar/bottomNavBar.dart';
 import 'CompetitorsBoard/leaderBoardProvider.dart';
 import 'Conversation/chatProvider.dart';
+
+import 'Profile/recommendation.dart';
 import 'SplashScreen/splashScreen.dart';
 
 import 'colors.dart';
@@ -46,7 +48,9 @@ class _MyAppState extends State<MyApp> {
           double screenWidth = MediaQuery.of(context).size.width;
           double screenHeight = MediaQuery.of(context).size.height;
           return MaterialApp(
-            home: LeaderboardScreen(),
+            home: Bottomnavbar(
+              selectedModel: '',
+            ),
             themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
             darkTheme:
                 notifier.isDark ? notifier.darkTheme : notifier.lightTheme,

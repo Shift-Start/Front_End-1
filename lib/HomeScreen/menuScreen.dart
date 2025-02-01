@@ -1,4 +1,5 @@
 import 'package:ShiftStart/BottomNavBar/bottomNavBar.dart';
+import 'package:ShiftStart/Profile/recommendation.dart';
 import 'package:flutter/material.dart';
 
 import '../Habits/habitTemplete.dart';
@@ -8,7 +9,7 @@ import '../Profile/competitors.dart';
 import '../Profile/logout.dart';
 import '../Profile/profile.dart';
 import '../Profile/puzzle.dart';
-import '../Profile/search.dart';
+
 import '../Profile/setting.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -61,10 +62,10 @@ class MenuScreen extends StatelessWidget {
                 Divider(color: colorScheme.outline), // لون الفاصل من الثيم
                 _buildMenuItem(
                   context,
-                  Icons.search,
-                  "Search",
+                  Icons.recommend,
+                  "Recommendation",
                   textTheme.bodyLarge!.color ?? Colors.black,
-                  Search(),
+                  RecommendationScreen(),
                 ),
                 Divider(color: colorScheme.outline),
                 _buildMenuItem(
