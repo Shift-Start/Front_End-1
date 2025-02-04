@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
         create: (BuildContext context) => UiProvider()..init(),
         child: Consumer<UiProvider>(
             builder: (context, UiProvider notifier, child) {
-          double screenWidth = MediaQuery.of(context).size.width;
-          double screenHeight = MediaQuery.of(context).size.height;
+          // double screenWidth = MediaQuery.of(context).size.width;
+          // double screenHeight = MediaQuery.of(context).size.height;
           return MaterialApp(
             home: HomeScreen(),
             themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,

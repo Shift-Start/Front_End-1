@@ -46,9 +46,13 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
 
   @override
   Widget build(BuildContext context) {
+    // 🔹 تصفية الأنشطة حسب النوع المحدد
     List<Map<String, dynamic>> filteredActivities = selectedFilter == "All"
         ? activities
-        : activities.where((activity) => activity["type"] == selectedFilter.toLowerCase()).toList();
+        : activities
+            .where((activity) =>
+                activity["type"] == selectedFilter.toLowerCase())
+            .toList();
 
     return Scaffold(
       appBar: AppBar(title: Text("Activity Log")),
@@ -81,7 +85,11 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
                   elevation: 4,
                   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: ListTile(
-                    leading: Icon(getIcon(activity["type"]), color: getColor(activity["type"]), size: 30),
+                    leading: Icon(
+                      getIcon(activity["type"]),
+                      color: getColor(activity["type"]),
+                      size: 30,
+                    ),
                     title: Text(
                       "${activity["user"]}",
                       style: TextStyle(fontWeight: FontWeight.bold),

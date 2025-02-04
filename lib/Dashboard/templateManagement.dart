@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
 
+
+import 'themeColor.dart'; 
+
 class TemplateManagement extends StatefulWidget {
+  const TemplateManagement({super.key});
+
   @override
   _TemplateManagementState createState() => _TemplateManagementState();
 }
 
 class _TemplateManagementState extends State<TemplateManagement> {
-  // Sample templates data
   List<Map<String, dynamic>> templates = [
-    {
-      "name": "Template 1",
-      "description": "This is template 1",
-      "created": "2024-01-10"
-    },
-    {
-      "name": "Template 2",
-      "description": "This is template 2",
-      "created": "2024-02-05"
-    },
-    {
-      "name": "Template 3",
-      "description": "This is template 3",
-      "created": "2024-03-15"
-    },
+    {"name": "Template 1", "description": "This is template 1", "created": "2024-01-10"},
+    {"name": "Template 2", "description": "This is template 2", "created": "2024-02-05"},
+    {"name": "Template 3", "description": "This is template 3", "created": "2024-03-15"},
   ];
 
-  // Function to add a new template
   void _showAddTemplateDialog() {
     TextEditingController nameController = TextEditingController();
     TextEditingController descriptionController = TextEditingController();
@@ -34,27 +25,18 @@ class _TemplateManagementState extends State<TemplateManagement> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Add New Template"),
+          title: const Text("Add New Template"),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: "Template Name"),
-              ),
-              TextField(
-                controller: descriptionController,
-                decoration: InputDecoration(labelText: "Template Description"),
-              ),
+              TextField(controller: nameController, decoration: const InputDecoration(labelText: "Template Name")),
+              TextField(controller: descriptionController, decoration: const InputDecoration(labelText: "Template Description")),
             ],
           ),
           actions: [
-            TextButton(
-              child: Text("Cancel"),
-              onPressed: () => Navigator.pop(context),
-            ),
+            TextButton(child: const Text("Cancel"), onPressed: () => Navigator.pop(context)),
             ElevatedButton(
-              child: Text("Add"),
+              child: const Text("Add"),
               onPressed: () {
                 setState(() {
                   templates.add({
@@ -72,38 +54,26 @@ class _TemplateManagementState extends State<TemplateManagement> {
     );
   }
 
-  // Function to edit an existing template
   void _showEditTemplateDialog(int index) {
-    TextEditingController nameController =
-        TextEditingController(text: templates[index]["name"]);
-    TextEditingController descriptionController =
-        TextEditingController(text: templates[index]["description"]);
+    TextEditingController nameController = TextEditingController(text: templates[index]["name"]);
+    TextEditingController descriptionController = TextEditingController(text: templates[index]["description"]);
 
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Edit Template"),
+          title: const Text("Edit Template"),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: "Template Name"),
-              ),
-              TextField(
-                controller: descriptionController,
-                decoration: InputDecoration(labelText: "Template Description"),
-              ),
+              TextField(controller: nameController, decoration: const InputDecoration(labelText: "Template Name")),
+              TextField(controller: descriptionController, decoration: const InputDecoration(labelText: "Template Description")),
             ],
           ),
           actions: [
-            TextButton(
-              child: Text("Cancel"),
-              onPressed: () => Navigator.pop(context),
-            ),
+            TextButton(child: const Text("Cancel"), onPressed: () => Navigator.pop(context)),
             ElevatedButton(
-              child: Text("Save Changes"),
+              child: const Text("Save Changes"),
               onPressed: () {
                 setState(() {
                   templates[index]["name"] = nameController.text;
@@ -118,7 +88,6 @@ class _TemplateManagementState extends State<TemplateManagement> {
     );
   }
 
-  // Function to delete a template
   void _deleteTemplate(int index) {
     setState(() {
       templates.removeAt(index);
@@ -129,23 +98,24 @@ class _TemplateManagementState extends State<TemplateManagement> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Template Management"),
+        title: const Text("Template Management"),
+        backgroundColor: AppColors.lightButton, // لون متناسق مع الثيم
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Search bar
-            TextField(
+            // شريط البحث
+            const TextField(
               decoration: InputDecoration(
                 labelText: "Search Templates...",
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
-            // List of templates
+            // قائمة القوالب
             Expanded(
               child: ListView.builder(
                 itemCount: templates.length,
@@ -153,27 +123,31 @@ class _TemplateManagementState extends State<TemplateManagement> {
                   final template = templates[index];
                   return Card(
                     elevation: 3,
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    color: AppColors.lightCard, // لون البطاقة
                     child: ListTile(
-                      title: Text(template["name"]),
+                      title: Text(
+                        template["name"],
+                        style: TextStyle(color: AppColors.lightPrimaryText),
+                      ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(template["description"]),
+                          Text(template["description"],
+                              style: TextStyle(color: AppColors.lightPrimaryText)),
                           Text("Created: ${template["created"]}",
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.grey)),
+                              style: const TextStyle(fontSize: 12, color: Colors.grey)),
                         ],
                       ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.edit, color: Colors.blue),
+                            icon: const Icon(Icons.edit, color: Colors.blue),
                             onPressed: () => _showEditTemplateDialog(index),
                           ),
                           IconButton(
-                            icon: Icon(Icons.delete, color: Colors.red),
+                            icon: const Icon(Icons.delete, color: Colors.red),
                             onPressed: () => _deleteTemplate(index),
                           ),
                         ],
@@ -184,15 +158,16 @@ class _TemplateManagementState extends State<TemplateManagement> {
               ),
             ),
 
-            // Add new template button
+            // زر إضافة قالب جديد
             ElevatedButton.icon(
               onPressed: _showAddTemplateDialog,
-              icon: Icon(Icons.add),
-              label: Text("Add New Template"),
+              icon: const Icon(Icons.add),
+              label: const Text("Add New Template"),
+              style: ElevatedButton.styleFrom(backgroundColor: AppColors.lightButton), // لون الزر
             ),
           ],
         ),
-      ),
-    );
-  }
+     ),
+);
+}
 }

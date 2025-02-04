@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'themeColor.dart'; 
+
 class UsersManagement extends StatefulWidget {
   const UsersManagement({super.key});
 
@@ -38,7 +40,10 @@ class _UsersManagementState extends State<UsersManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("User Management")),
+      appBar: AppBar(
+        title: const Text("User Management"),
+        backgroundColor: AppColors.lightButton, // تغيير اللون حسب الثيم
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -84,12 +89,23 @@ class _UsersManagementState extends State<UsersManagement> {
                   return Card(
                     elevation: 3,
                     margin: const EdgeInsets.symmetric(vertical: 8),
+                    color: AppColors.lightCard, // تغيير لون البطاقة
                     child: ListTile(
                       leading: const CircleAvatar(
                         child: Icon(Icons.person),
                       ),
-                      title: Text(user["name"]),
-                      subtitle: Text(user["email"]),
+                      title: Text(
+                        user["name"],
+                        style: TextStyle(
+                          color: AppColors.lightPrimaryText, // تغيير اللون للنص
+                        ),
+                      ),
+                      subtitle: Text(
+                        user["email"],
+                        style: TextStyle(
+                          color: AppColors.lightPrimaryText, // تغيير اللون للنص
+                        ),
+                      ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -138,6 +154,9 @@ class _UsersManagementState extends State<UsersManagement> {
               },
               icon: const Icon(Icons.add),
               label: const Text("Add New User"),
+              style: ElevatedButton.styleFrom(
+               backgroundColor: AppColors.lightButton, // تغيير اللون للزر
+              ),
             ),
           ],
         ),
@@ -155,16 +174,16 @@ class _UsersManagementState extends State<UsersManagement> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Name: ${user["name"]}"),
-              Text("Email: ${user["email"]}"),
-              Text("Status: ${user["status"]}"),
-              Text("Tasks: ${user["tasks"]}"),
-              Text("Login Date: ${user["loginDate"]}"),
+              Text("Name: ${user["name"]}", style: TextStyle(color: AppColors.lightPrimaryText)),
+              Text("Email: ${user["email"]}", style: TextStyle(color: AppColors.lightPrimaryText)),
+              Text("Status: ${user["status"]}", style: TextStyle(color: AppColors.lightPrimaryText)),
+              Text("Tasks: ${user["tasks"]}", style: TextStyle(color: AppColors.lightPrimaryText)),
+              Text("Login Date: ${user["loginDate"]}", style: TextStyle(color: AppColors.lightPrimaryText)),
             ],
           ),
           actions: [
             TextButton(
-              child: const Text("Close"),
+              child: const Text("Close", style: TextStyle(color: AppColors.lightButton)),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -200,7 +219,7 @@ class _UsersManagementState extends State<UsersManagement> {
           ),
           actions: [
             TextButton(
-              child: const Text("Cancel"),
+              child: const Text("Cancel", style: TextStyle(color: AppColors.lightButton)),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -219,10 +238,11 @@ class _UsersManagementState extends State<UsersManagement> {
                 });
                 Navigator.pop(context);
               },
+              style: ElevatedButton.styleFrom(backgroundColor: AppColors.lightButton), // لون الزر
             ),
           ],
         );
-      },
-    );
-  }
+     },
+);
+}
 }

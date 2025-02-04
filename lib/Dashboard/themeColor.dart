@@ -3,19 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppColors {
-  // Light Theme Colors
-  static const Color lightBackground = Color(0xFFFFF4E6);  // خلفية وردية فاتحة
-static const Color lightPrimaryText = Color(0xFF3E4A59);  // نص داكن مع لمسة من الرمادي
-static const Color lightSecondaryText = Color(0xFF00B0FF);  // زر أزرق سماوي
-static const Color lightButton = Color(0xFF00B0FF);  // زر أزرق سماوي
-static const Color lightCard = Color(0xFFF8F8F8);  // بطاقة بيضاء فاتحة  // بطاقة بيضاء ناعمة
+  //  Light Theme Colors
 
-  // Dark Theme Colors
-  static const Color darkBackground = Color(0xFF2C3E50);  // خلفية داكنة مع لمسة من الأزرق
-static const Color darkPrimaryText = Color(0xFFFFFFFF);  // نص أبيض
-static const Color darkSecondaryText = Color(0xFF1ABC9C);  // زر فيروزى
-static const Color darkButton = Color(0xFF9B59B6);  // زر أرجواني لامع
-static const Color darkCard = Color(0xFF34495E);  // بطاقة رمادية داكنة  // بطاقة داكنة ولكن ليست سوداء
+  static const Color lightBackground =
+      Color(0xFFF0F4F8); // خلفية فاتحة (تقريبًا أبيض بلمسة زرقاء)
+  static const Color lightPrimaryText = Color(0xFF3B7197); // أزرق داكن
+  static const Color lightSecondaryText = Color(0xFF4A8DB7); // أزرق فاتح
+  static const Color lightButton = Color(0xFF74BDE0); // أزرق سماوي فاتح
+  static const Color lightCard = Color(0xFFFFFFFF); // أبيض نقي
+
+// Dark Theme Colors
+  static const Color darkBackground = Color(0xFF2C3E50); // رمادي داكن
+  static const Color darkPrimaryText = Color(0xFFFFFFFF); // أبيض فاتح
+  static const Color darkSecondaryText = Color(0xFF74BDE0); // أزرق سماوي فاتح
+  static const Color darkButton = Color(0xFF4A8DB7); // أزرق فاتح
+  static const Color darkCard = Color(0xFF34495E); // رمادي داكن
 }
 
 class UiProviderAdmain extends ChangeNotifier {
@@ -130,7 +132,7 @@ class UiProviderAdmain extends ChangeNotifier {
   );
 
   // Dark mode toggle action
-  void changeTheme() {
+  void changeTheme() async {
     _isDark = !_isDark;
     storage.setBool('isDark', _isDark);
     notifyListeners();
@@ -143,6 +145,3 @@ class UiProviderAdmain extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-
-

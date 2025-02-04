@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+ 
 
+import 'themeColor.dart';
 import 'usersManagement.dart';
 
 class DashboardOverview extends StatelessWidget {
@@ -11,15 +13,20 @@ class DashboardOverview extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Dashboard Overview"),
+        backgroundColor: AppColors.lightButton, // استخدام اللون من الثيم
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               "Overall Statistics",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: AppColors.lightPrimaryText, // تغيير اللون
+              ),
             ),
             const SizedBox(height: 16),
             Row(
@@ -31,9 +38,13 @@ class DashboardOverview extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 32),
-            const Text(
+            Text(
               "Monthly Activity",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: AppColors.lightPrimaryText, // تغيير اللون
+              ),
             ),
             const SizedBox(height: 16),
             Expanded(child: ActivityChart()),
@@ -47,6 +58,9 @@ class DashboardOverview extends StatelessWidget {
                 );
               },
               child: const Text("Go to User Management"),
+              style: ElevatedButton.styleFrom(
+             backgroundColor: AppColors.lightButton, // تغيير اللون للزر
+              ),
             ),
           ],
         ),
@@ -66,13 +80,27 @@ class DashboardCard extends StatelessWidget {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      color: AppColors.lightCard, // تغيير لون البطاقة
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text(title, style: const TextStyle(fontSize: 16)),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                color: AppColors.lightPrimaryText, // اللون عند عرض العنوان
+              ),
+            ),
             const SizedBox(height: 8),
-            Text(value, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: AppColors.lightPrimaryText, // تغيير اللون للنص
+              ),
+            ),
           ],
         ),
       ),
@@ -88,7 +116,7 @@ class ActivityChart extends StatelessWidget {
     return LineChart(
       LineChartData(
         titlesData: FlTitlesData(show: true),
-        borderData: FlBorderData(show: true),
+        borderData: FlBorderData(show: true, border: Border.all(color: AppColors.lightPrimaryText)), // لون الحدود
         lineBarsData: [
           LineChartBarData(
             spots: [
@@ -99,7 +127,7 @@ class ActivityChart extends StatelessWidget {
               const FlSpot(5, 10),
             ],
             isCurved: true,
-            color: Colors.blue,
+            color: AppColors.lightButton, // تغيير اللون للخط
             barWidth: 4,
             isStrokeCapRound: true,
           ),

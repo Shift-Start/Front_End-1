@@ -1,7 +1,7 @@
-import 'package:ShiftStart/Dashboard/themeColor.dart';
-import 'package:ShiftStart/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ShiftStart/Dashboard/themeColor.dart';
+
 
 class SystemSettings extends StatefulWidget {
   @override
@@ -9,7 +9,6 @@ class SystemSettings extends StatefulWidget {
 }
 
 class _SystemSettingsState extends State<SystemSettings> {
-  bool isDarkMode = false; // للتحكم في الثيم
   int maxTeams = 5;
   int maxTasks = 20;
   List<String> userRoles = ["Admin", "Editor", "Viewer"];
@@ -18,113 +17,143 @@ class _SystemSettingsState extends State<SystemSettings> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<UiProviderAdmain>(context);
+
     return Scaffold(
-      appBar: AppBar(title: Text("System Settings")),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 🔹 تبديل الثيم
-            ListTile(
-              leading: Icon(Icons.brightness_6, color: Colors.blue),
-              title: Text("Dark Mode"),
-              trailing: Switch(
-                value: themeProvider.isDark,
-                onChanged: (value) {
-                  setState(() {
-                    themeProvider.changeTheme();
-                  });
-                },
-              ),
+      appBar: AppBar(
+        title: const Text("System Settings"),
+        backgroundColor: themeProvider.isDark ? Colors.black : AppColors.lightButton,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: [
+          //  تبديل الثيم
+          _buildSettingTile(
+            title: "Dark Mode",
+            subtitle: "Switch between light and dark themes",
+            icon: Icons.brightness_6,
+            color: Colors.blue,
+            trailing: Switch(
+              value: themeProvider.isDark,
+              onChanged: (value) => themeProvider.changeTheme(),
             ),
-            Divider(),
+          ),
 
-            // 🔹 إعداد صلاحيات المستخدمين
-            ListTile(
-              leading: Icon(Icons.admin_panel_settings, color: Colors.orange),
-              title: Text("User Role"),
-              subtitle: Text("Current Role: $selectedRole"),
-              trailing: DropdownButton<String>(
-                value: selectedRole,
-                items: userRoles.map((role) {
-                  return DropdownMenuItem(
-                    value: role,
-                    child: Text(role),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedRole = value!;
-                  });
-                },
-              ),
-            ),
-            Divider(),
-
-            // 🔹 الحد الأقصى للفرق
-            ListTile(
-              leading: Icon(Icons.group, color: Colors.green),
-              title: Text("Max Teams per User"),
-              subtitle: Text("$maxTeams teams allowed"),
-              trailing: IconButton(
-                icon: Icon(Icons.edit, color: Colors.blue),
-                onPressed: () {
-                  _editLimit("Max Teams", maxTeams, (value) {
-                    setState(() {
-                      maxTeams = value;
-                    });
-                  });
-                },
-              ),
-            ),
-            Divider(),
-
-            // 🔹 الحد الأقصى للمهام
-            ListTile(
-              leading: Icon(Icons.task, color: Colors.purple),
-              title: Text("Max Tasks per User"),
-              subtitle: Text("$maxTasks tasks allowed"),
-              trailing: IconButton(
-                icon: Icon(Icons.edit, color: Colors.blue),
-                onPressed: () {
-                  _editLimit("Max Tasks", maxTasks, (value) {
-                    setState(() {
-                      maxTasks = value;
-                    });
-                  });
-                },
-              ),
-            ),
-            Divider(),
-
-            // 🔹 إدارة كلمات المرور
-            ListTile(
-              leading: Icon(Icons.lock, color: Colors.red),
-              title: Text("Manage Passwords"),
-              trailing: Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                _showPasswordManagementDialog();
+          //  إعداد صلاحيات المستخدمين
+          _buildSettingTile(
+            title: "User Role",
+            subtitle: "Current Role: $selectedRole",
+            icon: Icons.admin_panel_settings,
+            color: Colors.orange,
+            trailing: DropdownButton<String>(
+              value: selectedRole,
+              items: userRoles.map((role) {
+                return DropdownMenuItem(value: role, child: Text(role));
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedRole = value!;
+                });
               },
             ),
-            Divider(),
+          ),
 
-            // 🔹 سجل المحاولات الفاشلة
-            ListTile(
-              leading: Icon(Icons.security, color: Colors.brown),
-              title: Text("Failed Login Attempts Log"),
-              trailing: Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                _showFailedLoginAttemptsDialog();
-              },
-            ),
-          ],
-        ),
+          //  الحد الأقصى للفرق
+          _buildEditableSetting(
+            title: "Max Teams per User",
+            subtitle: "$maxTeams teams allowed",
+            icon: Icons.group,
+            color: Colors.green,
+            value: maxTeams,
+            onEdit: (newValue) {
+              setState(() {
+                maxTeams = newValue;
+              });
+            },
+          ),
+
+          //  الحد الأقصى للمهام
+          _buildEditableSetting(
+            title: "Max Tasks per User",
+            subtitle: "$maxTasks tasks allowed",
+            icon: Icons.task,
+            color: Colors.purple,
+            value: maxTasks,
+            onEdit: (newValue) {
+              setState(() {
+                maxTasks = newValue;
+              });
+            },
+          ),
+
+          //  إدارة كلمات المرور
+          _buildSettingTile(
+            title: "Manage Passwords",
+            subtitle: "Change or reset passwords",
+            icon: Icons.lock,
+            color: Colors.red,
+            onTap: _showPasswordManagementDialog,
+          ),
+
+          //  سجل المحاولات الفاشلة
+          _buildSettingTile(
+            title: "Failed Login Attempts Log",
+            subtitle: "View login security logs",
+            icon: Icons.security,
+            color: Colors.brown,
+            onTap: _showFailedLoginAttemptsDialog,
+          ),
+        ],
       ),
     );
   }
 
-  // 🔹 تعديل الحد الأقصى للفرق أو المهام
+  //  دالة لإنشاء عناصر الإعدادات القابلة للتعديل
+  Widget _buildEditableSetting({
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required Color color,
+    required int value,
+    required Function(int) onEdit,
+  }) {
+    return _buildSettingTile(
+      title: title,
+      subtitle: subtitle,
+      icon: icon,
+      color: color,
+      trailing: IconButton(
+        icon: const Icon(Icons.edit, color: Colors.blue),
+        onPressed: () {
+          _editLimit(title, value, onEdit);
+        },
+      ),
+    );
+  }
+
+  //  دالة لإنشاء عناصر الإعدادات
+  Widget _buildSettingTile({
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required Color color,
+    Widget? trailing,
+    VoidCallback? onTap,
+  }) {
+    return Column(
+      children: [
+        ListTile(
+          leading: Icon(icon, color: color),
+          title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+          subtitle: Text(subtitle),
+          trailing: trailing,
+          onTap: onTap,
+        ),
+        const Divider(),
+      ],
+    );
+  }
+
+  //  تعديل الحد الأقصى للفرق أو المهام
   void _editLimit(String title, int currentValue, Function(int) onSave) {
     TextEditingController controller =
         TextEditingController(text: currentValue.toString());
@@ -137,15 +166,15 @@ class _SystemSettingsState extends State<SystemSettings> {
           content: TextField(
             controller: controller,
             keyboardType: TextInputType.number,
-            decoration: InputDecoration(labelText: "Enter new limit"),
+            decoration: const InputDecoration(labelText: "Enter new limit"),
           ),
           actions: [
             TextButton(
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
               onPressed: () => Navigator.pop(context),
             ),
             ElevatedButton(
-              child: Text("Save"),
+              child: const Text("Save"),
               onPressed: () {
                 int newValue = int.tryParse(controller.text) ?? currentValue;
                 onSave(newValue);
@@ -158,17 +187,17 @@ class _SystemSettingsState extends State<SystemSettings> {
     );
   }
 
-  // 🔹 نافذة إدارة كلمات المرور
+  //  نافذة إدارة كلمات المرور
   void _showPasswordManagementDialog() {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Password Management"),
-          content: Text("Feature coming soon!"),
+          title: const Text("Password Management"),
+          content: const Text("Feature coming soon!"),
           actions: [
             TextButton(
-              child: Text("Close"),
+              child: const Text("Close"),
               onPressed: () => Navigator.pop(context),
             ),
           ],
@@ -177,22 +206,22 @@ class _SystemSettingsState extends State<SystemSettings> {
     );
   }
 
-  // 🔹 نافذة سجل المحاولات الفاشلة
+  //  نافذة سجل المحاولات الفاشلة
   void _showFailedLoginAttemptsDialog() {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Failed Login Attempts"),
-          content: Text("No failed attempts recorded."),
+          title: const Text("Failed Login Attempts"),
+          content: const Text("No failed attempts recorded."),
           actions: [
             TextButton(
-              child: Text("Close"),
+              child: const Text("Close"),
               onPressed: () => Navigator.pop(context),
             ),
           ],
         );
-      },
-    );
-  }
+     },
+);
+}
 }

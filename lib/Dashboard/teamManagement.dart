@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+
+import 'themeColor.dart'; 
+
 class TeamManagement extends StatefulWidget {
   const TeamManagement({super.key});
 
@@ -20,12 +23,13 @@ class _TeamManagementState extends State<TeamManagement> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Team Management"),
-        
+        backgroundColor: AppColors.lightButton, // تغيير اللون حسب الثيم
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // شريط البحث
             const TextField(
               decoration: InputDecoration(
                 labelText: "Search for a team...",
@@ -42,27 +46,27 @@ class _TeamManagementState extends State<TeamManagement> {
                   return Card(
                     elevation: 3,
                     margin: const EdgeInsets.symmetric(vertical: 8),
+                    color: AppColors.lightCard, // تغيير لون البطاقة
                     child: ListTile(
-                      leading: const CircleAvatar(child: Icon(Icons.group)),
-                      title: Text(team["name"]),
-                      subtitle: Text("Members: ${team["members"]}"),
+                      leading: const CircleAvatar(
+                        child: Icon(Icons.group),
+                      ),
+                      title: Text(
+                        team["name"],
+                        style: TextStyle(
+                          color: AppColors.lightPrimaryText, // تغيير اللون للنص
+                        ),
+                      ),
+                      subtitle: Text(
+                        "Members: ${team["members"]}",
+                        style: TextStyle(
+                          color: AppColors.lightPrimaryText, // تغيير اللون للنص
+                        ),
+                      ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
-                         children: [
-                        //   IconButton(
-                        //     icon: const Icon(Icons.edit),
-                        //     onPressed: () {
-                        //       // Edit team functionality
-                        //     },
-                        //   ),
-                        //   IconButton(
-                        //     icon: const Icon(Icons.delete, color: Colors.red),
-                        //     onPressed: () {
-                        //       setState(() {
-                        //         teams.removeAt(index);
-                        //       });
-                        //     },
-                        //   ),
+                        children: [
+                          // يمكنك إضافة المزيد من الأزرار هنا مثل تعديل أو حذف الفريق
                         ],
                       ),
                     ),
@@ -70,12 +74,16 @@ class _TeamManagementState extends State<TeamManagement> {
                 },
               ),
             ),
+            // زر إضافة فريق جديد
             ElevatedButton.icon(
               onPressed: () {
-                // Add new team functionality
+                // هنا يمكنك إضافة وظيفة إضافة فريق جديد
               },
               icon: const Icon(Icons.add),
               label: const Text("Add New Team"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.lightButton, // تغيير لون الزر
+              ),
             ),
           ],
         ),

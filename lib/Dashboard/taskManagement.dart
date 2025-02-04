@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; // مكتبة لتنسيق التاريخ
+
+
+import 'themeColor.dart'; 
 
 class TaskManagement extends StatefulWidget {
   const TaskManagement({super.key});
@@ -8,17 +12,15 @@ class TaskManagement extends StatefulWidget {
 }
 
 class _TaskManagementState extends State<TaskManagement> {
-  // Sample list of tasks (can be made dynamic later)
   List<Map<String, dynamic>> tasks = [
     {"name": "Design User Interface", "status": "Active", "createdAt": "2025-02-01"},
     {"name": "Review Financial Reports", "status": "Completed", "createdAt": "2025-01-15"},
     {"name": "Fix Bugs", "status": "Delayed", "createdAt": "2025-01-30"},
   ];
 
-  // Filter variable for task status
   String _statusFilter = "All";
 
-  // Function to filter tasks by status
+  // ترشيح المهام بناءً على الحالة المختارة
   List<Map<String, dynamic>> getFilteredTasks() {
     if (_statusFilter == "All") {
       return tasks;
@@ -31,12 +33,13 @@ class _TaskManagementState extends State<TaskManagement> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Task Management"),
+        backgroundColor: AppColors.lightButton,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Filter row
+            // شريط الفلترة
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -44,22 +47,10 @@ class _TaskManagementState extends State<TaskManagement> {
                 DropdownButton<String>(
                   value: _statusFilter,
                   items: const [
-                    DropdownMenuItem(
-                      value: "All",
-                      child: Text("All"),
-                    ),
-                    DropdownMenuItem(
-                      value: "Active",
-                      child: Text("Active"),
-                    ),
-                    DropdownMenuItem(
-                      value: "Completed",
-                      child: Text("Completed"),
-                    ),
-                    DropdownMenuItem(
-                      value: "Delayed",
-                      child: Text("Delayed"),
-                    ),
+                    DropdownMenuItem(value: "All", child: Text("All")),
+                    DropdownMenuItem(value: "Active", child: Text("Active")),
+                    DropdownMenuItem(value: "Completed", child: Text("Completed")),
+                    DropdownMenuItem(value: "Delayed", child: Text("Delayed")),
                   ],
                   onChanged: (value) {
                     setState(() {
@@ -71,7 +62,7 @@ class _TaskManagementState extends State<TaskManagement> {
             ),
             const SizedBox(height: 16),
 
-            // Task list
+            // قائمة المهام
             Expanded(
               child: ListView.builder(
                 itemCount: getFilteredTasks().length,
@@ -80,13 +71,13 @@ class _TaskManagementState extends State<TaskManagement> {
                   return Card(
                     elevation: 3,
                     margin: const EdgeInsets.symmetric(vertical: 8),
+                    color: AppColors.lightCard,
                     child: ListTile(
-                      title: Text(task["name"]),
-                      subtitle: Text("Created At: ${task["createdAt"]}"),
+                      title: Text(task["name"], style: TextStyle(color: AppColors.lightPrimaryText)),
+                      subtitle: Text("Created At: ${task["createdAt"]}", style: const TextStyle(color: Colors.grey)),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // Change task status
                           IconButton(
                             icon: Icon(
                               task["status"] == "Active"
@@ -112,7 +103,6 @@ class _TaskManagementState extends State<TaskManagement> {
                               });
                             },
                           ),
-                          // Delete task
                           IconButton(
                             icon: const Icon(Icons.delete, color: Colors.red),
                             onPressed: () {
@@ -129,13 +119,12 @@ class _TaskManagementState extends State<TaskManagement> {
               ),
             ),
 
-            // Add New Task button
+            // زر إضافة مهمة جديدة
             ElevatedButton.icon(
-              onPressed: () {
-                _showAddTaskDialog(context);
-              },
+              onPressed: () => _showAddTaskDialog(context),
               icon: const Icon(Icons.add),
               label: const Text("Add New Task"),
+              style: ElevatedButton.styleFrom(backgroundColor: AppColors.lightButton),
             ),
           ],
         ),
@@ -143,10 +132,10 @@ class _TaskManagementState extends State<TaskManagement> {
     );
   }
 
-  // Function to show the Add New Task dialog
+  // *وظيفة إضافة مهمة جديدة مع DatePicker*
   void _showAddTaskDialog(BuildContext context) {
     TextEditingController nameController = TextEditingController();
-    TextEditingController dateController = TextEditingController();
+    DateTime? selectedDate;
 
     showDialog(
       context: context,
@@ -160,19 +149,34 @@ class _TaskManagementState extends State<TaskManagement> {
                 controller: nameController,
                 decoration: const InputDecoration(labelText: "Task Name"),
               ),
-              TextField(
-                controller: dateController,
-                decoration: const InputDecoration(labelText: "Created Date (YYYY-MM-DD)"),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  const Text("Select Date:"),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2020),
+                        lastDate: DateTime(2030),
+                      );
+
+                      if (pickedDate != null) {
+                        setState(() {
+                          selectedDate = pickedDate;
+                        });
+                      }
+                    },
+                    child: const Text("Pick Date"),
+                  ),
+                ],
               ),
             ],
           ),
           actions: [
-            TextButton(
-              child: const Text("Cancel"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+            TextButton(child: const Text("Cancel"), onPressed: () => Navigator.pop(context)),
             ElevatedButton(
               child: const Text("Add"),
               onPressed: () {
@@ -180,7 +184,9 @@ class _TaskManagementState extends State<TaskManagement> {
                   tasks.add({
                     "name": nameController.text,
                     "status": "Active",
-                    "createdAt": dateController.text,
+                    "createdAt": selectedDate != null
+                        ? DateFormat('yyyy-MM-dd').format(selectedDate!)
+                        : DateFormat('yyyy-MM-dd').format(DateTime.now()),
                   });
                 });
                 Navigator.pop(context);

@@ -1,6 +1,5 @@
-import 'package:ShiftStart/Dashboard/recommendationManagement.dart';
 import 'package:flutter/material.dart';
-
+import 'package:ShiftStart/Dashboard/recommendationManagement.dart';
 import 'activityLogPage.dart';
 import 'dashBoardOverviewScreen.dart';
 import 'notificationsPage.dart';
@@ -9,7 +8,9 @@ import 'settingsPage.dart';
 import 'taskManagement.dart';
 import 'teamManagement.dart';
 import 'templateManagement.dart';
+import 'themeColor.dart';
 import 'usersManagement.dart';
+ 
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -48,35 +49,45 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Management System")),
+      appBar: AppBar(
+        title: Text(
+          "Management System",
+          style: TextStyle(color: AppColors.lightPrimaryText), // تغيير اللون حسب الثيم
+        ),
+        backgroundColor: AppColors.lightButton, // اللون الأساسي للـ AppBar
+      ),
 
-      // 🔹 Drawer Menu
+      //  Drawer Menu
       drawer: Drawer(
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("John Doe"),
-              accountEmail: Text("john.doe@example.com"),
+              accountName: Text(
+                "John Doe",
+                style: TextStyle(color: AppColors.lightPrimaryText),
+              ),
+              accountEmail: Text(
+                "john.doe@example.com",
+                style: TextStyle(color: AppColors.lightSecondaryText),
+              ),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage("images/avatar3.jpeg"),
               ),
+              decoration: BoxDecoration(
+                color: AppColors.lightBackground,
+              ),
             ),
-            _buildDrawerItem(Icons.recommend, "Recommendations",
-                RecommendationsManagement()),
+            _buildDrawerItem(Icons.recommend, "Recommendations", RecommendationsManagement()),
             Divider(),
-            _buildDrawerItem(
-                Icons.analytics, "Reports & Analytics", ReportsAndAnalytics()),
+            _buildDrawerItem(Icons.analytics, "Reports & Analytics", ReportsAndAnalytics()),
             Divider(),
-            _buildDrawerItem(Icons.notifications, "Notifications",
-                NotificationManagementPage()),
+            _buildDrawerItem(Icons.notifications, "Notifications", NotificationManagementPage()),
             Divider(),
             _buildDrawerItem(Icons.history, "Activity Log", ActivityLogPage()),
             Divider(),
             _buildDrawerItem(Icons.settings, "Settings", SystemSettings()),
             Divider(),
-            SizedBox(
-              height: 150,
-            ),
+            SizedBox(height: 150),
             ListTile(
               leading: Icon(Icons.exit_to_app, color: Colors.red),
               title: Text(
@@ -98,8 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onBottomNavTapped,
-        selectedItemColor: Colors.blue, // اللون عند التحديد
-        unselectedItemColor: Colors.grey, // اللون عند عدم التحديد
+        selectedItemColor: AppColors.lightButton, // اللون عند التحديد
+        unselectedItemColor: AppColors.lightSecondaryText, // اللون عند عدم التحديد
         showUnselectedLabels: true, // عرض النص حتى لو لم يكن محددًا
         items: [
           BottomNavigationBarItem(
@@ -135,19 +146,19 @@ class _HomeScreenState extends State<HomeScreen> {
       leading: Icon(
         icon,
         color:
-            isSelected ? Colors.blue : Colors.grey, // تغيير اللون عند التحديد
+            isSelected ? AppColors.lightButton : AppColors.lightPrimaryText, // تغيير اللون عند التحديد
       ),
       title: Text(
         title,
         style: TextStyle(
           color:
-              isSelected ? Colors.blue : Colors.black, // تغيير النص عند التحديد
+              isSelected ? AppColors.lightButton : AppColors.lightPrimaryText, // تغيير النص عند التحديد
           fontWeight: isSelected
               ? FontWeight.bold
               : FontWeight.normal, // جعل النص عريض عند التحديد
         ),
       ),
       onTap: () => _onDrawerItemTapped(page), // تحديث الصفحة عند الضغط
-    );
-  }
+);
+}
 }
