@@ -13,6 +13,7 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   bool check = false;
+  bool ispasswordVisibile = false;
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +85,14 @@ class _SignupState extends State<Signup> {
               hintText: 'Enter Your Password',
               obscureText: true,
               suffixIcon: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.visibility_off),
+                onPressed: () {
+                  setState(() {
+                    ispasswordVisibile = !ispasswordVisibile;
+                  });
+                },
+                icon: Icon(ispasswordVisibile
+                    ? Icons.visibility
+                    : Icons.visibility_off),
               ),
             ),
             const SizedBox(height: 10),

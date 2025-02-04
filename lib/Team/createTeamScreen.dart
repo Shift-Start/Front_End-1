@@ -24,7 +24,7 @@ class CreateTeamScreen extends StatelessWidget {
           children: [
             Text("Team Name",
                 style:
-                    TextStyle(fontSize: 18, color: AppColors.lightPrimaryText)),
+                    TextStyle(fontSize: 18, color:Colors.white)),
             TextField(controller: teamNameController),
             SizedBox(height: 20),
             Text("Scope",

@@ -148,9 +148,7 @@ class _HomescreenState extends State<Homescreen> {
                         ? 'icons/icons8-bookmark-50.png'
                         : 'icons/icons8-bookmark_border.png',
                     height: 30,
-                    color: isPressed
-                        ? colorScheme.secondary
-                        : colorScheme.onSurface,
+                    color: isPressed ? Colors.amber : colorScheme.onSurface,
                   ),
                   onPressed: () {
                     setState(() {

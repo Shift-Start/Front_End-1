@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../colors.dart';
 import 'check your email.dart';
 import 'login.dart';
- 
 
 class Forgetpassword extends StatefulWidget {
   const Forgetpassword({super.key});
@@ -18,13 +17,13 @@ class _ForgetpasswordState extends State<Forgetpassword> {
     // الحصول على الثيم من الـ UiProvider
     final uiProvider = Provider.of<UiProvider>(context);
     final isDark = uiProvider.isDark;
-    
+
     // اختيار الثيم بناءً على الوضع الداكن أو الفاتح
     ThemeData theme = isDark ? uiProvider.darkTheme : uiProvider.lightTheme;
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor, // استخدام خلفية الثيم
-   
+
       body: Column(
         children: [
           // عنوان الصفحة
@@ -121,7 +120,8 @@ class _ForgetpasswordState extends State<Forgetpassword> {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                   backgroundColor: theme.primaryColor, // استخدام اللون الأساسي من الثيم
+                    backgroundColor:
+                        theme.primaryColor, // استخدام اللون الأساسي من الثيم
                     padding: EdgeInsets.symmetric(vertical: 20),
                     minimumSize: Size(300, 60),
                     shape: RoundedRectangleBorder(
@@ -129,8 +129,8 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => CheckEmail()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => CheckEmail()));
                   },
                   child: Text(
                     'RESET PASSWORD',
@@ -153,7 +153,8 @@ class _ForgetpasswordState extends State<Forgetpassword> {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.cardColor, // استخدام لون الكارت من الثيم
+                    backgroundColor:
+                        theme.cardColor, // استخدام لون الكارت من الثيم
                     padding: EdgeInsets.symmetric(vertical: 20),
                     minimumSize: Size(300, 60),
                     shape: RoundedRectangleBorder(
@@ -161,8 +162,8 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Login()));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Login()));
                   },
                   child: Text(
                     'BACK TO LOGIN',
@@ -178,7 +179,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
             ),
           ),
         ],
-     ),
-);
-}
+      ),
+    );
+  }
 }

@@ -12,6 +12,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool check = false;
+  bool isVisible = true; // متغير لإظهار/إخفاء كلمة المرور
 
   @override
   Widget build(BuildContext context) {
@@ -129,11 +130,17 @@ class _LoginState extends State<Login> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
-                      obscureText: true,
+                      obscureText: isVisible, // استخدام المتغير isVisible
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              isVisible = !isVisible; // تبديل قيمة isVisible
+                            });
+                          },
+                          icon: Icon(isVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility),
                         ),
                         border: InputBorder.none,
                         hintText: 'Enter Your Password',

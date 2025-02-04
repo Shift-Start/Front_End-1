@@ -48,10 +48,9 @@ class _SplashscreenState extends State<Splashscreen> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
-                          'images/logo (1).png')), //shape: BoxShape.circle
+                          'images/logo1.png')), //shape: BoxShape.circle
                 ),
               ),
-            
               Text(
                 'ShiftStart',
                 style: TextStyle(

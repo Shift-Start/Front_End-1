@@ -43,7 +43,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<UiProviderAdmain>(context);
+    // final themeProvider = Provider.of<UiProviderAdmain>(context);
     return ChangeNotifierProvider(
         create: (BuildContext context) => UiProvider()..init(),
         child: Consumer<UiProvider>(
@@ -51,12 +51,12 @@ class MyApp extends StatelessWidget {
           // double screenWidth = MediaQuery.of(context).size.width;
           // double screenHeight = MediaQuery.of(context).size.height;
           return MaterialApp(
-            home: HomeScreen(),
+            home: Splashscreen(),
             themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
             darkTheme:
                 notifier.isDark ? notifier.darkTheme : notifier.lightTheme,
-           // theme: ThemeData(),
-           theme: themeProvider.isDark ?themeProvider.darkTheme:themeProvider.lightTheme,
+            theme: ThemeData(),
+            // theme: themeProvider.isDark ?themeProvider.darkTheme:themeProvider.lightTheme,
             debugShowCheckedModeBanner: false,
           );
         }));
