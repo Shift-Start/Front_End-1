@@ -25,6 +25,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final bool seenOnboarding = prefs.getBool('seen_onboarding') ?? false;
 
   runApp(
     MultiProvider(
@@ -35,15 +37,17 @@ void main() async {
         ChangeNotifierProvider(create: (_) => UiProvider()),
         ChangeNotifierProvider(create: (_) => UiProviderAdmain()..init()),
       ],
-      child: MyApp(),
+      child: MyApp(seenOnboarding: seenOnboarding),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  final bool seenOnboarding;
+  const MyApp({super.key, required this.seenOnboarding});
   @override
   Widget build(BuildContext context) {
-    // final themeProvider = Provider.of<UiProviderAdmain>(context);
+    //final themeProvider = Provider.of<UiProviderAdmain>(context);
     return ChangeNotifierProvider(
         create: (BuildContext context) => UiProvider()..init(),
         child: Consumer<UiProvider>(
@@ -52,11 +56,14 @@ class MyApp extends StatelessWidget {
           // double screenHeight = MediaQuery.of(context).size.height;
           return MaterialApp(
             home: Splashscreen(),
+            // home: HomeScreen(),
             themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
             darkTheme:
                 notifier.isDark ? notifier.darkTheme : notifier.lightTheme,
             theme: ThemeData(),
-            // theme: themeProvider.isDark ?themeProvider.darkTheme:themeProvider.lightTheme,
+            // theme: themeProvider.isDark
+            //     ? themeProvider.darkTheme
+            //     : themeProvider.lightTheme,
             debugShowCheckedModeBanner: false,
           );
         }));

@@ -1,3 +1,4 @@
+import 'package:ShiftStart/About%20it/aboutIt.dart';
 import 'package:ShiftStart/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -65,8 +66,8 @@ class _SuccessfullyState extends State<Successfully> {
 
               // زر متابعة
               SizedBox(
-               width: 300,
-                  height: 60,
+                width: 300,
+                height: 60,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.primaryColor, // اللون الأساسي للزر
@@ -77,7 +78,7 @@ class _SuccessfullyState extends State<Successfully> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                          builder: (context) => TemplatesScreen()),
+                          builder: (context) => OnboardingScreen()),
                     );
                   },
                   child: Text(

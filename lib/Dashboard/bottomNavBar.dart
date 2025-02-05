@@ -102,10 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      // 🔹 محتوى الصفحة يتغير بناءً على الاختيار
+      // محتوى الصفحة يتغير بناءً على الاختيار
       body: _selectedPage,
 
-      // 🔹 Bottom Navigation Bar
+      // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onBottomNavTapped,
