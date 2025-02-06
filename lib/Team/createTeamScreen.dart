@@ -16,7 +16,7 @@ class CreateTeamScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Create Team"),
         centerTitle: true,
-        backgroundColor: AppColors.lightButton, 
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -24,7 +24,7 @@ class CreateTeamScreen extends StatelessWidget {
           children: [
             Text("Team Name",
                 style:
-                    TextStyle(fontSize: 18, color:Colors.white)),
+                    TextStyle(fontSize: 18, color: AppColors.lightPrimaryText)),
             TextField(controller: teamNameController),
             SizedBox(height: 20),
             Text("Scope",
@@ -54,14 +54,12 @@ class CreateTeamScreen extends StatelessWidget {
                       .addTeam(newTeam);
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            TeamsListScreen()),   
+                    MaterialPageRoute(builder: (context) => TeamsListScreen()),
                   );
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.lightButton,
+                backgroundColor: Theme.of(context).primaryColor,
                 padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),

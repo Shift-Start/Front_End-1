@@ -245,8 +245,9 @@ class _CalendarState extends State<Calendar> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(titleTextStyle: TextStyle(
-            color: AppColors.lightPrimaryText,
+      appBar: AppBar(backgroundColor: Theme.of(context).primaryColor,
+        titleTextStyle: TextStyle(
+           // color: AppColors.lightPrimaryText,
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: 'DMSans_18pt-Bold'),

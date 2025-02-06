@@ -15,7 +15,7 @@ class TeamsListScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Teams"),
         centerTitle: true,
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Consumer<TeamProvider>(
         builder: (context, teamProvider, child) {
@@ -93,7 +93,7 @@ class TeamsListScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => CreateTeamScreen()));

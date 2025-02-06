@@ -18,7 +18,7 @@ class TeamMembersScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("${team.name} Members"),
         centerTitle: true,
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [
@@ -81,7 +81,7 @@ class TeamMembersScreen extends StatelessWidget {
                       memberRoleController.clear();
                     }
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.lightButton),
+                  style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
                   child: Text("Add"),
                 ),
               ],

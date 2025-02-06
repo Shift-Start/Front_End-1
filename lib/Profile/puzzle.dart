@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../HomeScreen/menuScreen.dart';
+
 class Puzzle extends StatefulWidget {
   const Puzzle({super.key});
 
@@ -10,6 +12,17 @@ class Puzzle extends StatefulWidget {
 class _PuzzleState extends State<Puzzle> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Puzzel'),
+        backgroundColor: Theme.of(context).primaryColor,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => MenuScreen()));
+            },
+            icon: Icon(Icons.arrow_back)),
+      ),
+    );
   }
 }

@@ -3,7 +3,7 @@ import 'package:ShiftStart/Templets/templet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// Replace with the actual home screen file
+
 import '../colors.dart';
 
 class OnboardingScreen extends StatefulWidget {

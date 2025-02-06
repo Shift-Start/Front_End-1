@@ -56,11 +56,11 @@ class MyApp extends StatelessWidget {
           // double screenHeight = MediaQuery.of(context).size.height;
           return MaterialApp(
             home: Splashscreen(),
-            // home: HomeScreen(),
+           // home: HomeScreen(),
             themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
             darkTheme:
                 notifier.isDark ? notifier.darkTheme : notifier.lightTheme,
-            theme: ThemeData(),
+             theme: ThemeData(),
             // theme: themeProvider.isDark
             //     ? themeProvider.darkTheme
             //     : themeProvider.lightTheme,

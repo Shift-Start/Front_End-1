@@ -71,9 +71,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       appBar: AppBar(
         title: Text("Recommendation"),
         centerTitle: true,
-        backgroundColor: isDark
-            ? AppColors.darkButton
-            : AppColors.lightButton, // تغيير اللون حسب الوضع
+       
+          backgroundColor: Theme.of(context).primaryColor,// تغيير اللون حسب الوضع
       ),
       body: Padding(
         padding: EdgeInsets.all(16),

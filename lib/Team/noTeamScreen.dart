@@ -29,7 +29,7 @@ class NoTeamScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => CreateTeamScreen()),
                 );
               },
-              child: Text("Create a Team"),
+              child: Text("Create a Team",style: TextStyle(color: Colors.white),),
             ),
           ],
         ),

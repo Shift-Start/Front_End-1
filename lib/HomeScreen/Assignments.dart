@@ -34,9 +34,9 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor: Theme.of(context).primaryColor,
         titleTextStyle: TextStyle(
-            color: AppColors.lightPrimaryText,
+           // color: AppColors.lightPrimaryText,
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: 'DMSans_18pt-Bold'),

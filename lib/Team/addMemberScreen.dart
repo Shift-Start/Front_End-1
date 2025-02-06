@@ -21,7 +21,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Member"),
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -78,7 +78,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.lightButton,
+                backgroundColor: Theme.of(context).primaryColor,
                 padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),

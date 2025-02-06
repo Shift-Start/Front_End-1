@@ -42,7 +42,7 @@ class _TeamChatsScreenState extends State<TeamChatsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Team Chats"),
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -68,7 +68,7 @@ class _TeamChatsScreenState extends State<TeamChatsScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showCreateChatDialog(context, chatProvider),
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
         child: Icon(Icons.add, color: Colors.white),
       ),
     );
@@ -210,7 +210,7 @@ class _TeamChatsScreenState extends State<TeamChatsScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.lightButton),
+                  backgroundColor: Theme.of(context).primaryColor),
               child: Text("Create", style: TextStyle(color: Colors.white)),
             ),
           ],

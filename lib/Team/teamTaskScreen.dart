@@ -21,7 +21,7 @@ class TeamTasksScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("${team.name} Tasks"),
         centerTitle: true,
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [
@@ -125,7 +125,7 @@ class TeamTasksScreen extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.lightButton),
+                            backgroundColor: Theme.of(context).primaryColor),
                         child: Text("Pick Start Time",
                             style: TextStyle(color: Colors.white)),
                       ),
@@ -157,7 +157,7 @@ class TeamTasksScreen extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.lightButton),
+                            backgroundColor: Theme.of(context).primaryColor),
                         child: Text("Pick End Time",
                             style: TextStyle(color: Colors.white)),
                       ),
@@ -188,7 +188,7 @@ class TeamTasksScreen extends StatelessWidget {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.lightButton),
+                      backgroundColor: Theme.of(context).primaryColor),
                   child:
                       Text("Add Task", style: TextStyle(color: Colors.white)),
                 ),
@@ -228,7 +228,7 @@ class TeamTasksScreen extends StatelessWidget {
               SizedBox(height: 10),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.lightButton,
+                  backgroundColor: Theme.of(context).primaryColor,
                 ),
                 onPressed: () async {
                   final pickedDate = await showDatePicker(
@@ -257,7 +257,7 @@ class TeamTasksScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.lightButton,
+                  backgroundColor: Theme.of(context).primaryColor,
                 ),
                 onPressed: () async {
                   final pickedDate = await showDatePicker(
@@ -291,7 +291,7 @@ class TeamTasksScreen extends StatelessWidget {
                 onPressed: () => Navigator.pop(context), child: Text("Cancel")),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.lightButton,
+                backgroundColor: Theme.of(context).primaryColor,
               ),
               onPressed: () {
                 if (editTaskTitleController.text.isNotEmpty &&

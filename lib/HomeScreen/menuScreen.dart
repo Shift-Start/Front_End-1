@@ -1,10 +1,10 @@
 import 'package:ShiftStart/BottomNavBar/bottomNavBar.dart';
+import 'package:ShiftStart/CompetitorsBoard/leaderBoardScreen.dart';
 import 'package:ShiftStart/Profile/recommendation.dart';
 import 'package:flutter/material.dart';
 
 import '../Habits/habitTemplete.dart';
 import '../HomeScreen/HomeScreen.dart';
-import '../Profile/competitors.dart';
 
 import '../Profile/logout.dart';
 import '../Profile/profile.dart';
@@ -81,7 +81,7 @@ class MenuScreen extends StatelessWidget {
                   Icons.group,
                   "Competitors",
                   textTheme.bodyLarge!.color ?? Colors.black,
-                  Competitors(),
+                  LeaderboardScreen(),
                 ),
                 Divider(color: colorScheme.outline),
                 _buildMenuItem(

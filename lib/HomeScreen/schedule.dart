@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Profile/profile.dart';
 import '../colors.dart';
- 
 
 class SchedulePage extends StatefulWidget {
   @override
@@ -15,19 +14,24 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-
     final isDark = Provider.of<UiProvider>(context).isDark;
-    final theme = isDark ? ThemeData.dark() : ThemeData.light();  
+    final theme = isDark ? ThemeData.dark() : ThemeData.light();
 
     return Scaffold(
-      appBar: AppBar(titleTextStyle:
-            TextStyle(color: AppColors.lightPrimaryText, fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'DMSans_18pt-Bold'),
-        title: Text("Schedule",
-            // style: theme.textTheme.bodyLarge?.copyWith(
-            //   fontSize: 24,
-            //   fontWeight: FontWeight.bold,
-            // )
-            ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        titleTextStyle: TextStyle(
+            //color: AppColors.lightPrimaryText,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'DMSans_18pt-Bold'),
+        title: Text(
+          "Schedule",
+          // style: theme.textTheme.bodyLarge?.copyWith(
+          //   fontSize: 24,
+          //   fontWeight: FontWeight.bold,
+          // )
+        ),
         actions: [
           GestureDetector(
             onTap: () {
@@ -298,7 +302,7 @@ class _SchedulePageState extends State<SchedulePage> {
               fontSize: 18,
               color: selectedDay == day
                   ? theme.primaryColor
-                  : theme.textTheme.bodyMedium?.color, 
+                  : theme.textTheme.bodyMedium?.color,
             ),
           ),
           Text(
@@ -308,7 +312,7 @@ class _SchedulePageState extends State<SchedulePage> {
             ),
           ),
         ],
-     ),
-);
-}
+      ),
+    );
+  }
 }

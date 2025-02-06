@@ -34,8 +34,8 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
   ];
 
   final List<String> modelImages = [
-    'images/schedule.png',
-    'images/schedule.png',
+    'images/8.jpg',
+    'images/6.jpg',
   ];
 
   int? selectedIndex; // مؤشر الحاوية المختارة

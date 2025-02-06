@@ -28,7 +28,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Manage Tasks"),
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -81,7 +81,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.lightButton,
+                      backgroundColor: Theme.of(context).primaryColor,
                     ),
                     onPressed: () async {
                       DateTime? picked = await _pickDateTime(context);
@@ -102,7 +102,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.lightButton,
+                      backgroundColor: Theme.of(context).primaryColor,
                     ),
                     onPressed: () async {
                       DateTime? picked = await _pickDateTime(context);
@@ -148,7 +148,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.lightButton,
+                backgroundColor: Theme.of(context).primaryColor,
                 padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
@@ -286,7 +286,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.lightButton),
+                          backgroundColor: Theme.of(context).primaryColor),
                       onPressed: () async {
                         DateTime? picked = await _pickDateTime(context);
                         if (picked != null) {
@@ -306,7 +306,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.lightButton),
+                          backgroundColor: Theme.of(context).primaryColor),
                       onPressed: () async {
                         DateTime? picked = await _pickDateTime(context);
                         if (picked != null) {
@@ -352,7 +352,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.lightButton,
+                backgroundColor: Theme.of(context).primaryColor,
               ),
               child: Text("Save", style: TextStyle(color: Colors.white)),
             ),

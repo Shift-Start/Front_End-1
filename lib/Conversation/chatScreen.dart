@@ -66,7 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ],
         ),
-        backgroundColor: AppColors.lightButton,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         children: [
@@ -89,7 +89,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: isMe ? AppColors.lightButton : AppColors.lightCard,
+                      color: isMe ? Theme.of(context).primaryColor : AppColors.lightCard,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -176,7 +176,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           IconButton(
-            icon: Icon(Icons.send, color: AppColors.lightButton),
+            icon: Icon(Icons.send, color:Theme.of(context).primaryColor),
             onPressed: () {
               if (messageController.text.isNotEmpty) {
                 chatProvider.sendMessage(
